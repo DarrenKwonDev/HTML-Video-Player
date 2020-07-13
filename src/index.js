@@ -9,7 +9,7 @@ const totalTime = document.querySelector(".totalTime");
 
 const handlePlayButtonClick = () => {
   if (videoPlayer.paused) {
-    console.log("starts");
+    console.log("start");
     videoPlayer.play();
     playButton.innerHTML = '<i class="fas fa-pause"></i>';
   } else {
@@ -58,10 +58,23 @@ async function setTotalTime() {
   setInterval(getCurrentTime, 1000);
 }
 
+function handleEnded() {
+  videoPlayer.currentTime = 0;
+  videoPlayer.play();
+}
+
+function handleSpaceBarDown(e) {
+  if (e.code === "Space") {
+    handlePlayButtonClick();
+  }
+}
+
 function init() {
   playButton.addEventListener("click", handlePlayButtonClick);
   volumeButton.addEventListener("click", handleVolumnButtonClcik);
+  videoPlayer.addEventListener("ended", handleEnded);
   videoPlayer.addEventListener("loadeddata", setTotalTime);
+  document.addEventListener("keydown", handleSpaceBarDown);
 }
 
 init();
