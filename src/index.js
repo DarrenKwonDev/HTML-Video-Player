@@ -1,7 +1,6 @@
 import "./styles.css";
 import "regenerator-runtime/runtime";
 
-const body = document.querySelector("body");
 const videoPlayer = document.querySelector(".videoPlayer");
 const videoController = document.querySelector(".videoController");
 const playButton = document.querySelector(".playButton");
@@ -78,10 +77,11 @@ function handleHover() {
 let timer;
 
 function handleMouseMove(e) {
+  document.body.classList.remove("stop");
   const whenMouseStop = () => {
-    // 문제는 한 번 실행되면 그 이후에도 이 설정이 유지된다는 것입니다.
-    console.log("stop!");
+    console.log("stop");
     videoController.style.opacity = 0;
+    document.body.style.cursor = "none";
   };
 
   // 마우스를 안 움직이고 있으면 300ms 후에 해당 함수가 실행됩니다.
@@ -98,6 +98,7 @@ function init() {
   videoPlayer.addEventListener("mouseover", handleHover);
   videoPlayer.addEventListener("mousemove", () => {
     videoController.style.opacity = 1;
+    document.body.style.cursor = "default";
   });
   document.addEventListener("keydown", handleSpaceBarDown);
   document.addEventListener("mousemove", handleMouseMove);
