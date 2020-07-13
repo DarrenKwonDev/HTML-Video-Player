@@ -1,7 +1,9 @@
 import "./styles.scss";
 import "regenerator-runtime/runtime";
 
+const body = document.querySelector("body");
 const videoPlayer = document.querySelector(".videoPlayer");
+const videoController = document.querySelector(".videoController");
 const playButton = document.querySelector(".playButton");
 const volumeButton = document.querySelector(".volumeButton");
 const currentTime = document.querySelector(".currentTime");
@@ -69,12 +71,30 @@ function handleSpaceBarDown(e) {
   }
 }
 
+// 마우스가 안 움직이면 바를 숨겨라
+let prevMouseXPosition;
+
+// videoController.style.opacity = 1;
+// document.body.style.cursor = "";
+// let currentMouseXPosition = e.screenX;
+
+let timer;
+
+function handleMouseMove(e) {
+  const whenMouseStop = () => {
+    console.log("stop!");
+  };
+  clearTimeout(timer);
+  timer = setTimeout(whenMouseStop, 300);
+}
+
 function init() {
   playButton.addEventListener("click", handlePlayButtonClick);
   volumeButton.addEventListener("click", handleVolumnButtonClcik);
   videoPlayer.addEventListener("ended", handleEnded);
   videoPlayer.addEventListener("loadeddata", setTotalTime);
   document.addEventListener("keydown", handleSpaceBarDown);
+  document.addEventListener("mousemove", handleMouseMove);
 }
 
 init();
