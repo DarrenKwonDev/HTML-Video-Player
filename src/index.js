@@ -2,8 +2,7 @@ import "./styles.css";
 
 const videoPlayer = document.querySelector(".videoPlayer");
 const playButton = document.querySelector(".playButton");
-
-console.log(videoPlayer);
+const volumeButton = document.querySelector(".volumeButton");
 
 const handlePlayButtonClick = () => {
   if (videoPlayer.paused) {
@@ -17,8 +16,19 @@ const handlePlayButtonClick = () => {
   }
 };
 
+const handleVolumnButtonClcik = () => {
+  if (videoPlayer.muted) {
+    videoPlayer.muted = false;
+    volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+  } else {
+    videoPlayer.muted = true;
+    volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+  }
+};
+
 function init() {
   playButton.addEventListener("click", handlePlayButtonClick);
+  volumeButton.addEventListener("click", handleVolumnButtonClcik);
 }
 
 init();
