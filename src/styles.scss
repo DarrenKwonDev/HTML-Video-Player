@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.videoBlock {
+  position: relative;
+  max-width: 100%;
+  // &:hover {
+  //   .videoController {
+  //     opacity: 1;
+  //   }
+  // }
+}
+
+.videoBlock video {
+  max-width: 100%;
+}
+
+.videoController {
+  opacity: 1;
+  transition: opacity 0.3s linear;
+  padding: 0.5em 2em;
+  background-color: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  bottom: 15px;
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.volumeButton {
+  cursor: pointer;
+}
+
+.playButton {
+  cursor: pointer;
+}
