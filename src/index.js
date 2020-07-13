@@ -7,6 +7,7 @@ const playButton = document.querySelector(".playButton");
 const volumeButton = document.querySelector(".volumeButton");
 const currentTime = document.querySelector(".currentTime");
 const totalTime = document.querySelector(".totalTime");
+const progressBar = document.querySelector(".progressBar");
 
 const handlePlayButtonClick = () => {
   if (videoPlayer.paused) {
@@ -90,6 +91,14 @@ function handleMouseMove(e) {
   timer = setTimeout(whenMouseStop, 1000);
 }
 
+function handleTimeUpdate() {
+  const progressPercent = Math.floor(
+    (videoPlayer.currentTime / videoPlayer.duration) * 100
+  );
+
+  progressBar.style.width = `${progressPercent}%`;
+}
+
 function init() {
   playButton.addEventListener("click", handlePlayButtonClick);
   volumeButton.addEventListener("click", handleVolumnButtonClcik);
@@ -100,6 +109,7 @@ function init() {
     videoController.style.opacity = 1;
     document.body.style.cursor = "default";
   });
+  videoPlayer.addEventListener("timeupdate", handleTimeUpdate);
   document.addEventListener("keydown", handleSpaceBarDown);
   document.addEventListener("mousemove", handleMouseMove);
 }

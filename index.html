@@ -17,17 +17,22 @@
         class="videoPlayer"
       ></video>
       <div class="videoController">
-        <span class="playButton">
+        <div class="playButton">
           <i class="fas fa-play"></i>
-        </span>
-        <span>
-          <span class="currentTime">00:00:00</span>
-          <span class="slash">/</span>
-          <span class="totalTime">00:00:00</span>
-        </span>
-        <span class="volumeButton">
+        </div>
+        <div class="barWrapper">
+          <div class="fullBar">
+            <div class="progressBar"></div>
+          </div>
+          <div>
+            <span class="currentTime">00:00:00</span>
+            <span class="slash">/</span>
+            <span class="totalTime">00:00:00</span>
+          </div>
+        </div>
+        <div class="volumeButton">
           <i class="fas fa-volume-up"></i>
-        </span>
+        </div>
       </div>
     </div>
     <script src="src/index.js"></script>
