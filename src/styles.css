@@ -1,0 +1,21 @@
+body {
+  font-family: sans-serif;
+}
+
+.videoBlock {
+  position: relative;
+}
+
+.videoBlock video {
+}
+
+.videoController {
+  padding: 0 1em;
+  background-color: red;
+  position: absolute;
+  bottom: 10px;
+}
+
+.playButton {
+  cursor: pointer;
+}
