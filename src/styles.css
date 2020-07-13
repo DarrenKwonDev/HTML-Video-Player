@@ -11,11 +11,6 @@ body {
   max-width: 100%;
   display: flex;
   justify-content: center;
-  &:hover {
-    .videoController {
-      opacity: 1;
-    }
-  }
 }
 
 .videoBlock video {

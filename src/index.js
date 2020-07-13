@@ -1,4 +1,4 @@
-import "./styles.scss";
+import "./styles.css";
 import "regenerator-runtime/runtime";
 
 const body = document.querySelector("body");
@@ -71,21 +71,23 @@ function handleSpaceBarDown(e) {
   }
 }
 
-// 마우스가 안 움직이면 바를 숨겨라
-let prevMouseXPosition;
-
-// videoController.style.opacity = 1;
-// document.body.style.cursor = "";
-// let currentMouseXPosition = e.screenX;
+function handleHover() {
+  videoController.style.opacity = 1;
+}
 
 let timer;
 
 function handleMouseMove(e) {
   const whenMouseStop = () => {
+    // 문제는 한 번 실행되면 그 이후에도 이 설정이 유지된다는 것입니다.
     console.log("stop!");
+    videoController.style.opacity = 0;
   };
+
+  // 마우스를 안 움직이고 있으면 300ms 후에 해당 함수가 실행됩니다.
+  // 만약 300ms 이전에 마우스를 움직이면 실행되지 않겠죠?
   clearTimeout(timer);
-  timer = setTimeout(whenMouseStop, 300);
+  timer = setTimeout(whenMouseStop, 1000);
 }
 
 function init() {
@@ -93,6 +95,10 @@ function init() {
   volumeButton.addEventListener("click", handleVolumnButtonClcik);
   videoPlayer.addEventListener("ended", handleEnded);
   videoPlayer.addEventListener("loadeddata", setTotalTime);
+  videoPlayer.addEventListener("mouseover", handleHover);
+  videoPlayer.addEventListener("mousemove", () => {
+    videoController.style.opacity = 1;
+  });
   document.addEventListener("keydown", handleSpaceBarDown);
   document.addEventListener("mousemove", handleMouseMove);
 }
